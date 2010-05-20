@@ -92,8 +92,6 @@
     <Compile Include="CommandResponse.cs" />
     <Compile Include="Commands\CategoryWatcherCommand.cs" />
     <Compile Include="Commands\GenericCommand.cs" />
-    <Compile Include="Commands\Time.cs" />
-    <Compile Include="Commands\Uptime.cs" />
     <Compile Include="Commands\Version.cs" />
     <Compile Include="HttpRequest.cs" />
     <Compile Include="Logger.cs" />

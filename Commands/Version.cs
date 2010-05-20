@@ -15,26 +15,15 @@ namespace helpmebot6.Commands
         {
             get
             {
-                return "6.0";
+                return "6.0-backup";
             }
         }
 
         protected override CommandResponseHandler execute( User source , string channel , string[ ] args )
         {
-            if( GlobalFunctions.isInArray( "@svn", args ) != -1 )
-                return new CommandResponseHandler( getVersionString( ) );
-            else
+  
                 return new CommandResponseHandler( version );
         }
 
-        public string getVersionString( )
-        {
-
-            string rev = Process.Start( "svnversion" ).StandardOutput.ReadLine();
-            
-            string versionString = this.version +  "-r" + rev;
-
-            return versionString;
-        }
     }
 }
