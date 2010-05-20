@@ -46,10 +46,6 @@ namespace helpmebot6
         {
             Logger.Instance().addToLog( "Handling recieved message..." , Logger.LogTypes.GENERAL);
 
-            // if on ignore list, ignore!
-            if( source.AccessLevel == User.userRights.Ignored )
-                return;
-
             // flip destination over if required
             if( destination == Helpmebot6.irc.IrcNickname )
                 destination = source.Nickname;
@@ -71,9 +67,8 @@ namespace helpmebot6
                     newArrayPos++;
                 }
                 newArgs[ 0 ] = command;
-                string directedTo = FindRedirection( destination , ref newArgs );
                 CommandResponseHandler crh = new Commands.CategoryWatcher( ).run( source , destination, newArgs );
-                HandleCommandResponseHandler( source , destination , directedTo , crh );
+                HandleCommandResponseHandler( source , destination , crh );
                 return;
 
             }
@@ -89,71 +84,18 @@ namespace helpmebot6
             // check the type exists
             if( commandHandler != null )
             {
-                string directedTo = FindRedirection( destination , ref args );
 
                 // create a new instance of the commandhandler.
                 // cast to genericcommand (which holds all the required methods to run the command)
                 // run the command.
                 CommandResponseHandler response = ( (Commands.GenericCommand)Activator.CreateInstance( commandHandler ) ).run( source, destination , args );
-                HandleCommandResponseHandler( source , destination , directedTo , response );
+                HandleCommandResponseHandler( source , destination ,  response );
                 return;
             }
 
-            /*
-             * Check for a learned word
-             */
-            {
-                WordLearner.RemeberedWord rW = WordLearner.Remember( command );
-                CommandResponseHandler crh = new CommandResponseHandler( );
-                string wordResponse = rW.phrase;
-                string directedTo = "";
-                if( wordResponse != string.Empty )
-                {
-                    if( source.AccessLevel < User.userRights.Normal )
-                    {
-                        crh.respond( Configuration.Singleton( ).GetMessage( "accessDenied" ) , CommandResponseDestination.PRIVATE_MESSAGE );
-                        string[ ] aDArgs = { source.ToString( ) , MethodBase.GetCurrentMethod( ).Name };
-                        crh.respond( Configuration.Singleton( ).GetMessage( "accessDeniedDebug" , aDArgs ) , CommandResponseDestination.CHANNEL_DEBUG );
-
-                    }
-                    else
-                    {
-                        wordResponse = string.Format( wordResponse , args );
-                        if( rW.action )
-                        {
-                            crh.respond( IAL.wrapCTCP( "ACTION" , wordResponse ) );
-                        }
-                        else
-                        {
-                            directedTo = FindRedirection( destination , ref args );
-                            crh.respond( wordResponse );
-                        }
-                        HandleCommandResponseHandler( source , destination , directedTo , crh );
-                    }
-                    return;
-                }
-            }
         }
 
-
-
-        private string FindRedirection( string destination , ref string[ ] args )
-        {
-            string directedTo = "";
-            foreach( string arg in args )
-            {
-                if( arg.StartsWith( ">" ) )
-                {
-                    if( Helpmebot6.irc.isOnChannel( destination , arg.Substring( 1 ) ) != 0 )
-                        directedTo = arg.Substring( 1 );
-
-                    GlobalFunctions.removeItemFromArray( arg , ref args );
-                }
-            }
-            return directedTo;
-        }
-
-        private void HandleCommandResponseHandler( User source , string destination , string directedTo , CommandResponseHandler response )
+        private void HandleCommandResponseHandler( User source , string destination ,  CommandResponseHandler response )
         {
             if( response != null )
             {
@@ -161,18 +103,10 @@ namespace helpmebot6
                 {
                     string message = item.Message;
 
-                    if( directedTo != string.Empty )
-                    {
-                        message = directedTo + ": " + message;
-                    }
-
                     switch( item.Destination )
                     {
                         case CommandResponseDestination.DEFAULT:
-                            if( this.overrideBotSilence || ! (Configuration.Singleton( ).retrieveLocalStringOption( "silence" , destination ) == "true"))
-                            {
                                 Helpmebot6.irc.IrcPrivmsg( destination , message );
-                            }
                             break;
                         case CommandResponseDestination.CHANNEL_DEBUG:
                             Helpmebot6.irc.IrcPrivmsg( Helpmebot6.debugChannel , message );

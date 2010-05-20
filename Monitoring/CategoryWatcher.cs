@@ -40,13 +40,7 @@ namespace helpmebot6.Monitoring
 
         public CategoryWatcher( string Category, string Key, int SleepTime )
         {
-            // look up site id
-            string baseWiki = Configuration.Singleton( ).retrieveGlobalStringOption( "baseWiki" );
-
-            DAL.Select q = new DAL.Select( "site_api" );
-            q.setFrom( "site" );
-            q.addWhere( new DAL.WhereConds( "site_id", baseWiki ) );
-            _site = DAL.Singleton( ).executeScalarSelect( q );
+            _site = "http://en.wikipedia.org/w/api.php";
 
             _category = Category;
             _key = Key;
@@ -164,16 +158,9 @@ namespace helpmebot6.Monitoring
 
         private ArrayList removeBlacklistedItems( ArrayList pageList )
         {
-            DAL.Select q = new DAL.Select( "ip_title" );
-            q.setFrom( "ignoredpages" );
-            ArrayList blacklist = DAL.Singleton( ).executeSelect( q );
-
-            foreach( object[ ] item in blacklist )
+            if( pageList.Contains( "Category:Wikipedia semi-protected edit requests" ) )
             {
-                if( pageList.Contains( (string)item[ 0 ] ) )
-                {
-                    pageList.Remove( (string)item[ 0 ] );
-                }
+                pageList.Remove( "Category:Wikipedia semi-protected edit requests" );
             }
 
             return pageList;

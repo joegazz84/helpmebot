@@ -11,7 +11,7 @@ namespace helpmebot6
         public static Stream get( string uri )
         {
             HttpWebRequest hwr = (HttpWebRequest)WebRequest.Create( uri );
-            hwr.UserAgent = Configuration.Singleton( ).retrieveGlobalStringOption( "useragent" );
+            hwr.UserAgent = "Helpmebot/0 (Backup bot; mailto:helpmebot@helpmebot.org.uk)";
             HttpWebResponse resp = (HttpWebResponse)hwr.GetResponse( );
 
             return resp.GetResponseStream( );

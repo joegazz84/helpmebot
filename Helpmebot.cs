@@ -24,21 +24,15 @@ namespace helpmebot6
     public class Helpmebot6
     {
        public static IAL irc ;
-       static DAL dbal;
-       static Configuration config;
-       static UdpListener.UDPListener udp;
 
        static string Trigger;
 
        public static string debugChannel;
        public static string mainChannel;
 
-       static uint ircNetwork;
 
        public static readonly DateTime startupTime = DateTime.Now;
 
-       public static bool pagewatcherEnabled = true;
-       public static bool enableTwitter = true;
 
        static void Main( string[ ] args )
        {
@@ -50,18 +44,8 @@ namespace helpmebot6
                configFile = args[ configFileArg ].Substring( args[ configFileArg ].IndexOf( '=' ) );
            }
 
-           if( GlobalFunctions.prefixIsInArray( "--logdal" , args ) != -1 )
-               Logger.Instance( ).LogDAL = true;
-           if( GlobalFunctions.prefixIsInArray( "--logdallock", args ) != -1 )
-               Logger.Instance( ).LogDALLOCK = true;
            if( GlobalFunctions.prefixIsInArray( "--logirc" , args ) != -1 )
                Logger.Instance( ).LogIRC = true;
-
-           if( GlobalFunctions.prefixIsInArray( "--disablepagewatcher", args ) != -1 )
-               pagewatcherEnabled = false;
-           if( GlobalFunctions.prefixIsInArray( "--disabletwitter", args ) != -1 )
-               enableTwitter = false;
-
 
            InitialiseBot( configFile );
        }
@@ -74,38 +58,21 @@ namespace helpmebot6
 
            Configuration.readHmbotConfigFile( configFile, ref server, ref username, ref password, ref port, ref schema );
 
-           dbal = DAL.Singleton( server, port, username, password, schema );
-
-           if( !dbal.Connect( ) )
-           { // can't connect to database, DIE
-               return;
-           }
-
-           config = Configuration.Singleton( );
 
 
-           ircNetwork = config.retrieveGlobalUintOption( "ircNetwork" );
 
 
-           Trigger = config.retrieveGlobalStringOption( "commandTrigger" );
+           Trigger ="!";
 
-           irc = new IAL( ircNetwork );
+           irc = new IAL( server, port, username, password, "hmb", schema );
 
-           Monitoring.PageWatcher.PageWatcherController.Instance( );
 
            SetupEvents( );
-
-           NewYear.TimeMonitor.instance( );
 
            if( !irc.Connect( ) )
            { // if can't connect to irc, die
                return;
            }
-
-           udp = new helpmebot6.UdpListener.UDPListener( 4357 );
-
-           string[ ] twparms = { server, schema, irc.IrcServer };
-           Twitter.tweet( Configuration.Singleton( ).GetMessage( "tweetStartup", twparms ) );
        }
 
 
@@ -114,15 +81,9 @@ namespace helpmebot6
        {
            irc.ConnectionRegistrationSucceededEvent += new IAL.ConnectionRegistrationEventHandler( JoinChannels );
 
-           irc.JoinEvent += new IAL.JoinEventHandler( welcomeNewbieOnJoinEvent );
-
            irc.PrivmsgEvent += new IAL.PrivmsgEventHandler( ReceivedMessage );
 
-           irc.InviteEvent += new IAL.InviteEventHandler( irc_InviteEvent );
-
            irc.ThreadFatalError += new EventHandler( irc_ThreadFatalError );
-
-           Monitoring.PageWatcher.PageWatcherController.Instance( ).PageWatcherNotificationEvent += new helpmebot6.Monitoring.PageWatcher.PageWatcherController.PageWatcherNotificationEventDelegate( Helpmebot6_PageWatcherNotificationEvent );
        }
 
        static void irc_ThreadFatalError( object sender, EventArgs e )
@@ -130,35 +91,6 @@ namespace helpmebot6
            Stop( );
        }
 
-       static void Helpmebot6_PageWatcherNotificationEvent( helpmebot6.Monitoring.PageWatcher.PageWatcherController.RcPageChange rcItem )
-       {
-           string[ ] messageParams = { rcItem.title, rcItem.user, rcItem.comment, rcItem.diffUrl, rcItem.byteDiff, rcItem.flags };
-           string message = Configuration.Singleton( ).GetMessage( "pageWatcherEventNotification", messageParams );
-
-           DAL.Select q = new DAL.Select( "channel_name" );
-           q.addJoin( "channel", DAL.Select.JoinTypes.INNER, new DAL.WhereConds( false, "pwc_channel", "=", false, "channel_id" ) );
-           q.addJoin( "watchedpages", DAL.Select.JoinTypes.INNER, new DAL.WhereConds( false, "pw_id", "=", false, "pwc_pagewatcher" ) );
-           q.addWhere( new DAL.WhereConds( "pw_title", rcItem.title ) );
-           q.setFrom( "pagewatcherchannels" );
-
-           ArrayList channels = DAL.Singleton( ).executeSelect( q );
-
-           foreach( object[ ] item in channels )
-           {
-               irc.IrcPrivmsg( (string)item[ 0 ], message );
-           }
-       }
-
-       static void irc_InviteEvent( User source , string nickname , string channel )
-       {
-           string[ ] args = { channel };
-           new Commands.Join( ).run( source ,channel, args);
-       }
-
-       static void welcomeNewbieOnJoinEvent( User source , string channel )
-       {
-           Monitoring.NewbieWelcomer.Instance( ).execute( source, channel );
-       }
 
        static void ReceivedMessage( User source , string destination , string message )
        {
@@ -177,12 +109,6 @@ namespace helpmebot6
 
 
                }
-               string aiResponse = AI.Intelligence.Singleton( ).Respond( message );
-               if( aiResponse != string.Empty )
-               {
-                   string[ ] aiParameters = { source.Nickname };
-                   irc.IrcPrivmsg( destination, config.GetMessage( aiResponse, aiParameters ) );
-               }
            }
            catch( Exception ex )
            {
@@ -194,18 +120,10 @@ namespace helpmebot6
 
        static void JoinChannels( )
         {
-            debugChannel = config.retrieveGlobalStringOption( "channelDebug" );
+            debugChannel = "##helpmebot";
             irc.IrcJoin( debugChannel );
 
-            DAL.Select q = new DAL.Select( "channel_name" );
-            q.setFrom( "channel" );
-            q.addWhere( new DAL.WhereConds( "channel_enabled", 1 ) );
-            q.addWhere( new DAL.WhereConds( "channel_network", ircNetwork.ToString( ) ) );
-            foreach( object[] item in dbal.executeSelect(q) )
-            {
-                irc.IrcJoin( (string)( item )[ 0 ] );
- 
-            }
+            irc.IrcJoin( "#wikipedia-en-help" );
         }
 
         /// <summary>

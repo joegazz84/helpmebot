@@ -22,15 +22,10 @@ namespace helpmebot6
 {
     public class User
     {
-        private DAL db;
-
         private string _nickname, _username, _hostname;
-        private userRights _accessLevel;
-        private bool _retrieved_accessLevel = false;
 
         public User()
         {
-            db = DAL.Singleton();
         }
 
         public string Nickname
@@ -133,88 +128,5 @@ namespace helpmebot6
 
             return endResult;
         }
-
-        public userRights AccessLevel
-        {
-            get
-            {
-                try
-                {
-                    if ( _retrieved_accessLevel == false )
-                    {
-                        DAL.Select q=new DAL.Select("user_accesslevel");
-                        q.addWhere(new DAL.WhereConds(true,_nickname,"LIKE",false,"user_nickname"));
-                        q.addWhere(new DAL.WhereConds(true,_username,"LIKE",false,"user_username"));
-                        q.addWhere(new DAL.WhereConds(true,_hostname,"LIKE",false,"user_hostname"));
-                        q.addOrder(new DAL.Select.Order("user_accesslevel",true));
-                        q.setFrom("user");
-
-                        string accesslevel = db.executeScalarSelect( q );
-                        if ( accesslevel == null )
-                        {
-                            accesslevel = "Normal";
-                        }
-
-                        userRights ret;
-
-                        switch ( accesslevel )
-                        {
-                            case "Developer":
-                                ret = userRights.Developer;
-                                break;
-                            case "Superuser":
-                                ret = userRights.Superuser;
-                                break;
-                            case "Advanced":
-                                ret = userRights.Advanced;
-                                break;
-                            case "Normal":
-                                ret = userRights.Normal;
-                                break;
-                            case "Semi-ignored":
-                                ret = userRights.Semiignored;
-                                break;
-                            case "Ignored":
-                                ret = userRights.Ignored;
-                                break;
-                            default:
-                                ret = userRights.Normal;
-                                break;
-                        }
-
-                        _accessLevel = ret;
-                        _retrieved_accessLevel = true;
-                        return ret;
-                    }
-                    else
-                    {
-                        return _accessLevel;
-                    }
-                }
-                catch ( Exception ex )
-                {
-                    GlobalFunctions.ErrorLog( ex );
-                }
-          
-                    return userRights.Normal;
-                
-            }
-            set
-            {
-                throw new NotImplementedException( );                
-            }
-        }
-        
-        public enum userRights
-        {
-            Developer = 3,
-            Superuser = 2,
-            Advanced = 1,
-            Normal = 0,
-            Semiignored = -1,
-            Ignored = -2
-        }
-
-        
     }
 }

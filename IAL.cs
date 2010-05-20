@@ -186,40 +186,6 @@ namespace helpmebot6
 
         #region constructor/destructor
 
-        public IAL( uint ircNetwork )
-        {
-            _networkId = ircNetwork;
-
-            DAL db = DAL.Singleton( );
-
-
-            DAL.Select q = new DAL.Select( "in_host", "in_port", "in_nickname", "in_password", "in_username", "in_realname", "in_log", "in_nickserv" );
-            q.setFrom( "ircnetwork" );
-            q.addLimit( 1, 0 );
-            q.addWhere( new DAL.WhereConds( "in_id", ircNetwork.ToString() ) );
-
-            ArrayList configSettings = db.executeSelect( q );
-
-            _ircServer = (string)(((object[])configSettings[ 0 ])[ 0 ]);
-            _ircPort = (uint)( (object[ ])configSettings[ 0 ] )[ 1 ];
-
-            _myNickname = (string)( ( (object[ ])configSettings[ 0 ] )[ 2 ] );
-            _myPassword = (string)( ( (object[ ])configSettings[ 0 ] )[ 3 ] );
-            _myUsername = (string)( ( (object[ ])configSettings[ 0 ] )[ 4 ] );
-            _myRealname = (string)( ( (object[ ])configSettings[ 0 ] )[ 5 ] );
-
-            _logEvents = (bool)( ( (object[ ])configSettings[ 0 ] )[ 6 ] );
-
-            _nickserv = (string)( ( (object[ ])configSettings[ 0 ] )[ 7 ] );
-
-            if( /*recieveWallops*/ true )
-                _connectionUserModes += 4;
-            if( /*invisible*/ true )
-                _connectionUserModes += 8;
-
-            initialiseEventHandlers( );
-        }
-
         public IAL( string server, uint port, string nickname, string password, string username, string realname )
         {
             _networkId = 0;
@@ -230,6 +196,8 @@ namespace helpmebot6
             _myPassword = password;
             _myUsername = username;
             _myRealname = realname;
+
+            _nickserv = "NickServ";
 
             initialiseEventHandlers( );
         }
@@ -366,7 +334,6 @@ namespace helpmebot6
             {
                 _sendLine( "PRIVMSG " + Destination + " :" + Message );
             }
-            Linker.Instance( ).ParseMessage( Message , Destination );
         }
 
         public void IrcQuit( string message )

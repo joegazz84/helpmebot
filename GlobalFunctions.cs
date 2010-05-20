@@ -101,47 +101,6 @@ namespace helpmebot6
 
         //public static void Log(string message) { Console.WriteLine("# " + message); }
 
-        public static User.userRights commandAccessLevel( )
-        {
-            string typename = "";
-            System.Diagnostics.StackTrace foo = new System.Diagnostics.StackTrace( );
-            typename = foo.GetFrame( 1 ).GetMethod( ).DeclaringType.FullName;
-
-            User.userRights accessLevel;
-            DAL.Select q = new DAL.Select( "accesslevel" );
-            q.setFrom( "command" );
-
-            q.addWhere( new DAL.WhereConds( "typename", typename ) );
-            q.addLimit( 1, 0 );
-
-            string al = DAL.Singleton( ).executeScalarSelect( q );
-            switch( al )
-            {
-                case "Developer":
-                    accessLevel = User.userRights.Developer;
-                    break;
-                case "Superuser":
-                    accessLevel = User.userRights.Superuser;
-                    break;
-                case "Advanced":
-                    accessLevel = User.userRights.Advanced;
-                    break;
-                case "Normal":
-                    accessLevel = User.userRights.Normal;
-                    break;
-                case "Semi-ignored":
-                    accessLevel = User.userRights.Semiignored;
-                    break;
-                case "Ignored":
-                    accessLevel = User.userRights.Ignored;
-                    break;
-                default:
-                    accessLevel = User.userRights.Developer;
-                    ErrorLog( new ArgumentOutOfRangeException( "command", typename, "not found in commandlist" ) );
-                    break;
-            }
-            return accessLevel;
-        }
         public static void removeItemFromArray(string item, ref string[] array)
         {
             int count = 0;
@@ -180,9 +139,6 @@ namespace helpmebot6
 
         public static void silentPrivmsg( IAL irc, string channel, string message )
         {
-            if( Configuration.Singleton( ).retrieveLocalStringOption( "silence", channel ) == "true" )
-                return;
-            else
                 irc.IrcPrivmsg( channel, message );
         }
     }
