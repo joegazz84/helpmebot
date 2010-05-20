@@ -9,7 +9,7 @@
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>helpmebot6</RootNamespace>
-    <AssemblyName>helpmebot6</AssemblyName>
+    <AssemblyName>helpmebot6-backup</AssemblyName>
     <StartupObject>helpmebot6.Helpmebot6</StartupObject>
     <FileUpgradeFlags>
     </FileUpgradeFlags>
