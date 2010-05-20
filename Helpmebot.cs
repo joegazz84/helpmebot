@@ -41,7 +41,7 @@ namespace helpmebot6
            string configFile = ".hmbot";
            if ( configFileArg!=-1 )
            {
-               configFile = args[ configFileArg ].Substring( args[ configFileArg ].IndexOf( '=' ) );
+               configFile = args[ configFileArg ].Substring( args[ configFileArg ].IndexOf( '=' ) + 1 );
            }
 
            if( GlobalFunctions.prefixIsInArray( "--logirc" , args ) != -1 )
