@@ -21,8 +21,8 @@ class SpecialCommandList extends SpecialPage {
 		$out.= '<span style="color:orange;">Semi-ignored</span><br /> ';
 		$out.= '<span style="color:red;">Ignored</span></p> ';
 		
-//		$pager = new CommandListPager();
+		$pager = new CommandListPager();
 		$wgOut->addHTML( $out );
-//		$wgOut->addHTML( $pager->getNavigationBar() . '<table>' . $pager->getBody() . '</table>' . $pager->getNavigationBar() );
+		$wgOut->addHTML( $pager->getNavigationBar() . '<table>' . $pager->getBody() . '</table>' . $pager->getNavigationBar() );
 	}
 }
