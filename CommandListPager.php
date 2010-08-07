@@ -26,7 +26,7 @@ class CommandListPager extends TablePager
 			return $lnk->link(Title::newFromText($value, NS_COMMAND), $value, false, false, false);
 		}
 		
-		return $value;
+		return $name . "." . $value;
 	}
 
 	function getDefaultSort()
