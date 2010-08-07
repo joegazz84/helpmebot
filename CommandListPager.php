@@ -1,6 +1,6 @@
 <?php
 
-class AccessListPager extends TablePager
+class CommandListPager extends TablePager
 {
 
 	function getQueryInfo()
