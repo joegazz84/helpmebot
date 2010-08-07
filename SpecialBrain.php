@@ -3,7 +3,6 @@
 class SpecialBrain extends SpecialPage {
 	function __construct() {
 		parent::__construct( 'Brain' );
-		wfLoadExtensionMessages('Helpmebot');
 	}
  
 	function execute( $par ) {

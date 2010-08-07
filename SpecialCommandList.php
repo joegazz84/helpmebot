@@ -3,7 +3,6 @@
 class SpecialCommandList extends SpecialPage {
 	function __construct() {
 		parent::__construct( 'CommandList' );
-		wfLoadExtensionMessages('Helpmebot');
 	}
  
 	function execute( $par ) {
