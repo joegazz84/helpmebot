@@ -25,11 +25,11 @@ $wgAutoloadclasses['SpecialCommandList'] = $IP.'/extensions/Helpmebot/SpecialCom
 
 $wgSpecialPages['AccessList'] = 'SpecialAccessList';
 $wgSpecialPages['Brain'] = 'SpecialBrain';
-$wgSpecialPages['CommandList'] = 'SpecialCommandList';
+//$wgSpecialPages['CommandList'] = 'SpecialCommandList';
 
 $wgSpecialPageGroups['AccessList'] = 'helpmebot';
 $wgSpecialPageGroups['Brain']="helpmebot";
-$wgSpecialPageGroups['CommandList']="helpmebot";
+//$wgSpecialPageGroups['CommandList']="helpmebot";
 
 $wgExtensionMessagesFiles['Helpmebot'] = $IP . '/extensions/Helpmebot/Helpmebot.i18n.php';
 
