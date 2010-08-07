@@ -7,12 +7,18 @@ if(!defined('MEDIAWIKI')) {
 	die( 1 );
 }
 
+define('NS_COMMAND', 204);
+define('NS_COMMAND_TALK', 205);
+
 $wgExtensionCredits['specialpage'][] = array(
 'path' => __FILE__,
 'name' => 'Helpmebot Viewer',
 'description' => 'Allows viewing of Helpmebot\'s configuration etc.',
 'author' => 'Simon Walker'
 );
+
+$wgExtraNamespaces[NS_COMMAND] = "Command";
+$wgExtraNamespaces[NS_COMMAND_TALK] = "Command_talk:";
 
 SpecialVersion::$viewvcUrls['http://svn.helpmebot.org.uk/svn/helpmebot'] = 'http://svn.helpmebot.org.uk/viewvc/helpmebot';
 
