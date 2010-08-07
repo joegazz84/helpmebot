@@ -12,6 +12,8 @@ class CommandListPager extends TablePager
 	}
 
 	function getIndexField(){return "command";}
+	
+	function getRowClass($row){return "commandlistentry-" . $row->accesslevel; }
 
 	function isFieldSortable( $field )
 	{ return false; }

@@ -1,7 +1,7 @@
-.accesslistentry-Developer { color:purple;}
-.accesslistentry-Superuser { color:blue;}
-.accesslistentry-Advanced {color:green;}
-.accesslistentry-Normal {color:black;}
-.accesslistentry-Semi-ignored { color:orange;}
-.accesslistentry-Ignored { color:red;}
+.accesslistentry-Developer, .commandlistentry-Developer{ color:purple;}
+.accesslistentry-Superuser, .commandlistentry-Superuser { color:blue;}
+.accesslistentry-Advanced, .commandlistentry-Advanced {color:green;}
+.accesslistentry-Normal, .commandlistentry-Normal {color:black;}
+.accesslistentry-Semi-ignored, .commandlistentry-Semi-ignored { color:orange;}
+.accesslistentry-Ignored, .commandlistentry-Ignored { color:red;}
 

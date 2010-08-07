@@ -33,4 +33,4 @@ $wgSpecialPageGroups['CommandList']="helpmebot";
 
 $wgExtensionMessagesFiles['Helpmebot'] = $IP . '/extensions/Helpmebot/Helpmebot.i18n.php';
 
-$wgHelpmebotStyleVersion=2;
+$wgHelpmebotStyleVersion=3;
