@@ -14,6 +14,8 @@ $wgExtensionCredits['specialpage'][] = array(
 'author' => 'Simon Walker'
 );
 
+SpecialVersion::$viewvcUrls['http://svn.helpmebot.org.uk/svn/helpmebot'] = 'http://svn.helpmebot.org.uk/viewvc/helpmebot';
+
 $wgAutoloadClasses['SpecialAccessList'] = $IP . '/extensions/Helpmebot/SpecialAccessList.php';
 $wgAutoloadClasses['AccessListPager'] = $IP . '/extensions/Helpmebot/AccessListPager.php';
 $wgAutoloadClasses['SpecialBrain'] = $IP.'/extensions/Helpmebot/SpecialBrain.php';
