@@ -21,7 +21,7 @@ $wgAutoloadClasses['AccessListPager'] = $IP . '/extensions/Helpmebot/AccessListP
 $wgAutoloadClasses['SpecialBrain'] = $IP.'/extensions/Helpmebot/SpecialBrain.php';
 $wgAutoloadClasses['BrainPager'] = $IP.'/extensions/Helpmebot/BrainPager.php';
 //$wgAutoloadClasses['CommandListPager'] = $IP.'/extensions/Helpmebot/CommandListPager.php';
-$wgAutoloadclasses['SpecialCommandList'] = $IP.'/extensions/Helpmebot/SpecialCommandList.php';
+$wgAutoloadClasses['SpecialCommandList'] = $IP . '/extensions/Helpmebot/SpecialCommandList.php';
 
 $wgSpecialPages['AccessList'] = 'SpecialAccessList';
 $wgSpecialPages['Brain'] = 'SpecialBrain';
