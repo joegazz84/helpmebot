@@ -20,6 +20,12 @@ class CommandListPager extends TablePager
 
 	function formatValue( $name, $value )
 	{
+		if($name == "command")
+		{
+			$lnk = new Linker();
+			return $lnk->link(Title::newFromText($value, NS_COMMAND), $value, false, false, false);
+		}
+		
 		return $value;
 	}
 
