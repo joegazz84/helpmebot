@@ -6,7 +6,7 @@ class CommandListPager extends TablePager
 	function getQueryInfo()
 	{
 		return array(
-			'tables' => 'helpmebot_v6.commands',
+			'tables' => 'hmb_commands',
 			'fields' => array('command','description', 'switches', 'accesslevel')
 			);
 	}
