@@ -10,8 +10,8 @@ class SpecialCommandList extends SpecialPage {
 		global $wgRequest, $wgOut, $wgScriptPath, $wgHelpmebotStyleVersion;
  
 		$this->setHeaders();
-//		$wgOut->addExtensionStyle($wgScriptPath . '/extensions/Helpmebot/hmb.css?' . $wgHelpmebotStyleVersion );
-
+		$wgOut->addExtensionStyle($wgScriptPath . '/extensions/Helpmebot/hmb.css?' . $wgHelpmebotStyleVersion );
+		
 		$out = "Command list is shown below.";
 //		$out.= " the access level.";
 		
