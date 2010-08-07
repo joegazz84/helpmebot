@@ -22,11 +22,11 @@ class CommandListPager extends TablePager
 	{
 		if($name == "command")
 		{
-			$lnk = new Linker();
-			return $lnk->link(Title::newFromText($value, NS_COMMAND), $value, false, false, false);
+			return $this->getSkin()->link(Title::newFromText($value, NS_COMMAND), false, false, false);
+			
 		}
 		
-		return $name . "." . $value;
+		return $value;
 	}
 
 	function getDefaultSort()
