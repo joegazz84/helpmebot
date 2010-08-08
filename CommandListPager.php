@@ -22,8 +22,7 @@ class CommandListPager extends TablePager
 	{
 		if($name == "command")
 		{
-			$cmdpage = Title::makeTitle(NS_COMMAND, $value);
-			
+			$cmdpage = Title::makeTitle(NS_COMMAND, Title::capitalize($value, NS_COMMAND) );
 			return $this->getSkin()->link($cmdpage,$cmdpage->getText() );
 			
 		}
