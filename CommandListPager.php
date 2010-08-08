@@ -32,7 +32,7 @@ class CommandListPager extends TablePager
 
 	function getDefaultSort()
 	{
-		return ""; //user_accesslevel";
+		return "accesslevel"; //user_accesslevel";
 	}
 
 	function getFieldNames()
