@@ -19,10 +19,14 @@ $wgExtensionCredits['specialpage'][] = array(
 'author' => 'Simon Walker'
 );
 
+$wgAvailableRights[] = 'helpmebot-editmessages';
+
 $wgExtraNamespaces[NS_COMMAND] = "Command";
 $wgExtraNamespaces[NS_COMMAND_TALK] = "Command_talk:";
 $wgExtraNamespaces[NS_MESSAGE] = "Message";
 $wgExtraNamespaces[NS_MESSAGE_TALK] = "Message_talk:";
+
+$wgNamespaceProtection[NS_MESSAGE]      = array( 'helpmebot-editmessages' );
 
 SpecialVersion::$viewvcUrls['http://svn.helpmebot.org.uk/svn/helpmebot'] = 'http://svn.helpmebot.org.uk/viewvc/helpmebot';
 
