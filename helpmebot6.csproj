@@ -166,6 +166,9 @@
     <Compile Include="Threading\IThreadedSystem.cs" />
     <Compile Include="Threading\ThreadList.cs" />
     <Compile Include="Twitter.cs" />
+    <Compile Include="UdpListener\Command\Message.cs" />
+    <Compile Include="UdpListener\Command\Shutdown.cs" />
+    <Compile Include="UdpListener\IUdpCommand.cs" />
     <Compile Include="UdpListener\UDPListener.cs" />
     <Compile Include="UdpListener\UdpMessage.cs" />
     <Compile Include="User.cs" />

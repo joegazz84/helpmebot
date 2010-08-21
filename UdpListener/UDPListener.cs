@@ -20,7 +20,6 @@ using System;
 using System.IO;
 using System.Net;
 using System.Net.Sockets;
-using System.Reflection;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Security.Cryptography;
 using System.Text;
@@ -31,7 +30,7 @@ using helpmebot6.Threading;
 
 namespace helpmebot6.UdpListener
 {
-    public class UDPListener : IThreadedSystem
+    internal class UDPListener : IThreadedSystem
     {
         public UDPListener(int port)
         {
@@ -66,7 +65,18 @@ namespace helpmebot6.UdpListener
                         string hash = Encoding.ASCII.GetString(bh);
                         if (hash == recievedMessage.hash)
                         {
-                            Helpmebot6.irc.sendRawLine("PRIVMSG " + recievedMessage.message);
+                            // Create a new object which holds the type of the command handler, if it exists.
+                            // if the command handler doesn't exist, then this won't be set to a value
+                            Type command =
+                                Type.GetType("helpmebot6.UdpListener.Command." + recievedMessage.command);
+
+                            if(command!=null)
+                            {
+                                // create a new instance of the udp command.
+                                // cast to IUdpCommand (which holds all the required methods to run the command)
+                                // run the command.
+                                ((IUdpCommand) (Activator.CreateInstance(command))).execute(recievedMessage.message);
+                            }
                         }
                     }
                     else

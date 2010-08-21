@@ -43,6 +43,13 @@ namespace helpmebot6.UdpListener
         /// <value>The message.</value>
         public string message { get; private set; }
 
+
+        /// <summary>
+        /// Gets the command.
+        /// </summary>
+        /// <value>The command.</value>
+        public string command { get; private set; }
+
         /// <summary>
         /// Initializes a new instance of the <see cref="UdpMessage"/> class.
         /// </summary>
@@ -51,7 +58,17 @@ namespace helpmebot6.UdpListener
         public UdpMessage(string message, string key)
         {
             this.message = message;
-            byte[] bm = Encoding.ASCII.GetBytes(message + key);
+            this.command = "Message";
+            byte[] bm = Encoding.ASCII.GetBytes(command + message + key);
+            byte[] bh = MD5.Create().ComputeHash(bm);
+            this.hash = Encoding.ASCII.GetString(bh);
+        }
+
+        public UdpMessage(string message, string key, string command)
+        {
+            this.message = message;
+            this.command = command;
+            byte[] bm = Encoding.ASCII.GetBytes(command + message + key);
             byte[] bh = MD5.Create().ComputeHash(bm);
             this.hash = Encoding.ASCII.GetString(bh);
         }
@@ -62,12 +79,14 @@ namespace helpmebot6.UdpListener
         {
             this.hash = info.GetString("hash");
             this.message = info.GetString("message");
+            this.command = info.GetString("command");
         }
 
         public void GetObjectData(SerializationInfo info, StreamingContext context)
         {
             info.AddValue("hash", this.hash);
             info.AddValue("message", this.message);
+            info.AddValue("command", this.command);
         }
 
         #endregion
