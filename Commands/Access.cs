@@ -110,10 +110,6 @@ namespace helpmebot6.Commands
         [Obsolete("Use User class")]
         private static CommandResponseHandler addAccessEntry(User newEntry, User.UserRights accessLevel)
         {
-            Logger.instance().addToLog(
-                "Method:" + MethodBase.GetCurrentMethod().DeclaringType.Name + MethodBase.GetCurrentMethod().Name,
-                Logger.LogTypes.DNWB);
-
             string[] messageParams = {newEntry.ToString(), accessLevel.ToString()};
             string message = new Message().get("addAccessEntry", messageParams);
 
@@ -134,10 +130,6 @@ namespace helpmebot6.Commands
         [Obsolete("Use the User class")]
         private static CommandResponseHandler delAccessEntry(int id)
         {
-            Logger.instance().addToLog(
-                "Method:" + MethodBase.GetCurrentMethod().DeclaringType.Name + MethodBase.GetCurrentMethod().Name,
-                Logger.LogTypes.DNWB);
-
             string[] messageParams = {id.ToString()};
             string message = new Message().get("removeAccessEntry", messageParams);
 

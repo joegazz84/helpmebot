@@ -80,13 +80,25 @@ namespace helpmebot6.Monitoring
                     client.Close();
                 }
             }
-            catch (ThreadAbortException)
+            catch (ThreadAbortException ex)
             {
-                this.threadFatalError(this, new EventArgs());
+                EventHandler temp = threadFatalError;
+                if (temp != null)
+                {
+                    temp(this, new EventArgs());
+                }
+
+                GlobalFunctions.errorLog(ex);
             }
-            catch(ObjectDisposedException)
+            catch(ObjectDisposedException ex)
             {
-                this.threadFatalError(this, new EventArgs());
+                EventHandler temp = threadFatalError;
+                if (temp != null)
+                {
+                    temp(this, new EventArgs());
+                }
+ 
+                GlobalFunctions.errorLog(ex);
             }
         }
 

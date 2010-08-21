@@ -22,7 +22,7 @@ using System;
 
 namespace helpmebot6.Threading
 {
-    public interface IThreadedSystem
+    internal interface IThreadedSystem
     {
         /// <summary>
         ///   Stop all threads in this instance to allow for a clean shutdown.
@@ -32,6 +32,7 @@ namespace helpmebot6.Threading
         /// <summary>
         ///   Register this instance of the threaded class with the global list
         /// </summary>
+        /// TODO: implement this somewhere - probably turn this into an abstract class.
         void registerInstance();
 
         /// <summary>

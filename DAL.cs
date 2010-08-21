@@ -122,7 +122,6 @@ namespace helpmebot6
 
         private void executeNonQuery(ref MySqlCommand cmd)
         {
-            Logger.instance().addToLog("Locking access to DAL...", Logger.LogTypes.DalLock);
             lock (this)
             {
                 Logger.instance().addToLog("Executing (non)query: " + cmd.CommandText, Logger.LogTypes.DAL);
@@ -148,7 +147,6 @@ namespace helpmebot6
                 }
                 Logger.instance().addToLog("Done executing (non)query: " + cmd.CommandText, Logger.LogTypes.DAL);
             }
-            Logger.instance().addToLog("DAL Lock released.", Logger.LogTypes.DalLock);
         }
 
         private MySqlDataReader executeReaderQuery(string query)
@@ -156,7 +154,6 @@ namespace helpmebot6
 
             MySqlDataReader result = null;
 
-            Logger.instance().addToLog("Locking access to DAL...", Logger.LogTypes.DalLock);
             lock (this)
             {
                 Logger.instance().addToLog("Executing (reader)query: " + query, Logger.LogTypes.DAL);
@@ -178,7 +175,6 @@ namespace helpmebot6
                     GlobalFunctions.errorLog(ex);
                 }
             }
-            Logger.instance().addToLog("DAL Lock released.", Logger.LogTypes.DalLock);
             return result;
         }
 

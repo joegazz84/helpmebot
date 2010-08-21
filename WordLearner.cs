@@ -25,7 +25,7 @@ namespace helpmebot6
     /// <summary>
     /// Word learner class
     /// </summary>
-    public class WordLearner
+    internal class WordLearner
     {
         /// <summary>
         /// Learns the specified word.

@@ -228,12 +228,6 @@ namespace helpmebot6
         /// </remarks>
         public static bool isRecognisedMessage(ref string message, ref bool overrideSilence)
         {
-            Logger.instance().addToLog(
-                "Method:" + MethodBase.GetCurrentMethod().DeclaringType.Name + MethodBase.GetCurrentMethod().Name,
-                Logger.LogTypes.DNWB);
-
-           
-
             Regex validCommand =
                 new Regex(
                     @"^(?:" + Helpmebot6.trigger + @"(?:(?<botname>" + Helpmebot6.irc.ircNickname.ToLower( ) +

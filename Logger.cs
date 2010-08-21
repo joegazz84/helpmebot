@@ -86,10 +86,6 @@ namespace helpmebot6
         public enum LogTypes
         {
             /// <summary>
-            /// dotnetwikibot, GREY, no choice
-            /// </summary>
-            DNWB, // 
-            /// <summary>
             /// Database stuff, MAGENTA
             /// </summary>
             DAL, // 
@@ -112,11 +108,7 @@ namespace helpmebot6
             /// <summary>
             /// raw IRC events,
             /// </summary>
-            IRC, //  
-            /// <summary>
-            /// ?
-            /// </summary>
-            DalLock
+            IRC //  
         }
 
         // DATE: GREEN
@@ -137,22 +129,6 @@ namespace helpmebot6
 
                 switch (type)
                 {
-                    case LogTypes.DNWB:
-                        Console.ForegroundColor = ConsoleColor.Green;
-                        Console.Write(dateString);
-                        Console.ForegroundColor = ConsoleColor.White;
-                        Console.WriteLine("A " + message);
-                        break;
-                    case LogTypes.DalLock:
-                        if (this.logDalLock)
-                        {
-                            Console.ForegroundColor = ConsoleColor.Green;
-                            Console.Write(dateString);
-                            Console.ForegroundColor = ConsoleColor.Magenta;
-                            Console.WriteLine("DL " + message);
-                        }
-                        this._dalLogger.WriteLine(dateString + message);
-                        break;
                     case LogTypes.DAL:
                         if (this.logDAL)
                         {

@@ -177,7 +177,7 @@ namespace helpmebot6.Monitoring
             }
             catch (Exception ex)
             {
-                Logger.instance().addToLog("Error contacting API (" + _site + ") " + ex.Message, Logger.LogTypes.DNWB);
+                Logger.instance().addToLog("Error contacting API (" + _site + ") " + ex.Message, Logger.LogTypes.Error);
             }
             pages = removeBlacklistedItems(pages);
 
