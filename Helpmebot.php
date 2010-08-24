@@ -28,8 +28,6 @@ $wgExtraNamespaces[NS_MESSAGE_TALK] = "Message_talk:";
 
 $wgNamespaceProtection[NS_MESSAGE]      = array( 'helpmebot-editmessages' );
 
-SpecialVersion::$viewvcUrls['http://svn.helpmebot.org.uk/svn/helpmebot'] = 'http://svn.helpmebot.org.uk/viewvc/helpmebot';
-
 $wgAutoloadClasses['SpecialAccessList'] = $IP . '/extensions/Helpmebot/SpecialAccessList.php';
 $wgAutoloadClasses['AccessListPager'] = $IP . '/extensions/Helpmebot/AccessListPager.php';
 
