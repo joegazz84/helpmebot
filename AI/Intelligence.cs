@@ -17,6 +17,7 @@
 #region Usings
 
 using System;
+using System.Reflection;
 
 #endregion
 
@@ -60,13 +61,13 @@ namespace helpmebot6.AI
             if(DateTime.Now.AddMinutes(-1  ) > lastAiResponse)
             {
                 lastAiResponse = DateTime.Now;
-                return getSpecialResponse(input);
+                return getResponse( input );
 
             }
-            return getStandardResponse( input );
+            return "";
         }
 
-        private string getStandardResponse( string input )
+        private string getResponse( string input )
         {
             string[] tokens = input.Split(' ');
 
@@ -121,12 +122,7 @@ namespace helpmebot6.AI
                 }
             }
 
-            return "";
-        }
-
-        private string getSpecialResponse(string input)
-        {
-            if( input.Contains( "Ayn Rand" ) )
+            if (input.Contains("Ayn Rand"))
                 return "aynrand";
 
             return "";
