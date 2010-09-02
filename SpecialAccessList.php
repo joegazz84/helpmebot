@@ -20,7 +20,7 @@ class SpecialAccessList extends SpecialPage {
 		$out.= '<span style="color:green;"">'.wfMsg('hmb-advanced').'</span><br /> ';
 		$out.= '<span style="color:black;">'.wfMsg('hmb-normal').'</span><br /> ';
 		$out.= '<span style="color:orange;">'.wfMsg('hmb-semi-ignored').'</span><br /> ';
-		$out.= '<span style="color:red;">'.wfMsg('hmb-ignored').'</span></p> ';
+		$out.= '<span style="color:red;">'.wfMsg('hmb-ignored-hidden').'</span></p> ';
 		
 		$pager = new AccessListPager();
 		$wgOut->addHTML( $out );
