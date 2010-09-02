@@ -31,6 +31,9 @@ $wgNamespaceProtection[NS_MESSAGE]      = array( 'helpmebot-editmessages' );
 $wgAutoloadClasses['SpecialAccessList'] = $IP . '/extensions/Helpmebot/SpecialAccessList.php';
 $wgAutoloadClasses['AccessListPager'] = $IP . '/extensions/Helpmebot/AccessListPager.php';
 
+$wgAutoloadClasses['SpecialIgnoreList'] = $IP . '/extensions/Helpmebot/SpecialIgnoreList.php';
+$wgAutoloadClasses['IgnoreListPager'] = $IP . '/extensions/Helpmebot/IgnoreListPager.php';
+
 $wgAutoloadClasses['SpecialBrain'] = $IP.'/extensions/Helpmebot/SpecialBrain.php';
 $wgAutoloadClasses['BrainPager'] = $IP.'/extensions/Helpmebot/BrainPager.php';
 
@@ -43,11 +46,13 @@ $wgSpecialPages['AccessList'] = 'SpecialAccessList';
 $wgSpecialPages['Brain'] = 'SpecialBrain';
 $wgSpecialPages['CommandList'] = 'SpecialCommandList';
 $wgSpecialPages['BotMessages'] = 'SpecialBotMessages';
+$wgSpecialPages['IgnoreList'] = 'SpecialIgnoreList';
 
 $wgSpecialPageGroups['AccessList'] = 'helpmebot';
 $wgSpecialPageGroups['Brain']="helpmebot";
 $wgSpecialPageGroups['CommandList']="helpmebot";
 $wgSpecialPageGroups['BotMessages']="helpmebot";
+$wgSpecialPageGroups['IgnoreList']="helpmebot";
 
 $wgExtensionMessagesFiles['Helpmebot'] = $IP . '/extensions/Helpmebot/Helpmebot.i18n.php';
 
