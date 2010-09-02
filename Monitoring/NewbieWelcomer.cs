@@ -16,6 +16,7 @@
 //  ****************************************************************************/
 #region Usings
 
+using System;
 using System.Collections;
 using System.IO;
 using System.Reflection;
@@ -36,24 +37,7 @@ namespace helpmebot6.Monitoring
 
         protected NewbieWelcomer()
         {
-            DAL.Select q = new DAL.Select("bin_blob");
-            q.setFrom("binary_store");
-            q.addWhere(new DAL.WhereConds("bin_desc", "newbie_hostnames"));
-            ArrayList result = DAL.singleton().executeSelect(q);
-
-            byte[] list = ((byte[]) (((object[]) (result[0]))[0]));
-
-
-            BinaryFormatter bf = new BinaryFormatter();
-            try
-            {
-                this._hostNames = (SerializableArrayList) bf.Deserialize(new MemoryStream(list));
-            }
-            catch (SerializationException ex)
-            {
-                GlobalFunctions.errorLog(ex);
-                this._hostNames = new SerializableArrayList();
-            }
+         
         }
 
         public static NewbieWelcomer instance()
@@ -61,7 +45,6 @@ namespace helpmebot6.Monitoring
             return _instance ?? ( _instance = new NewbieWelcomer( ) );
         }
 
-        private readonly SerializableArrayList _hostNames;
 
         /// <summary>
         /// Executes the newbie.
@@ -73,22 +56,19 @@ namespace helpmebot6.Monitoring
             if (Configuration.singleton()["silence",channel] == "false" &&
                 Configuration.singleton()["welcomeNewbie",channel] == "true")
             {
+
                 bool match = false;
-                foreach (object item in this._hostNames)
-                {
-                    string pattern = (string) item;
-                    Regex rX = new Regex(pattern);
-                    if (rX.IsMatch(source.hostname))
-                    {
-                        match = true;
-                        break;
-                    }
-                }
+
+                // check against host list in welcomeusers table where exception = 0
+                // if matches, set match=true
+                
+                // if match = true, check host against welcomeusers where exception = 1
+                // if matches, set match = false
 
                 if (match)
                 {
                     string[] cmdArgs = {source.nickname, channel};
-                    Helpmebot6.irc.ircPrivmsg(channel, new Message().get("welcomeMessage", cmdArgs));
+                    Helpmebot6.irc.ircPrivmsg(channel, new Message().get("newbieWelcome" + channel.Replace('#',':'), cmdArgs));
                 }
             }
         }
@@ -97,36 +77,32 @@ namespace helpmebot6.Monitoring
         /// Adds a host to the list of detected newbie hosts.
         /// </summary>
         /// <param name="host">The host.</param>
+        [Obsolete]
         public void addHost(string host)
         {
-            this._hostNames.Add(host);
-
-            saveHostnames();
+            throw new NotImplementedException();
         }
 
+        public void addHost(User nuh, string channel, bool exception)
+        {
+            throw new NotImplementedException();
+        }
+
+        [Obsolete]
         public void delHost(string host)
         {
-            this._hostNames.Remove(host);
-
-            saveHostnames();
+            throw new NotImplementedException();
         }
 
+        public void delHost(User nuh, string channel, bool exception)
+        {
+            throw new NotImplementedException();
+        }
+
+        [Obsolete]
         public string[] getHosts()
         {
-            string[] list = new string[this._hostNames.Count];
-            this._hostNames.CopyTo(list);
-            return list;
-        }
-
-        private void saveHostnames()
-        {
-            BinaryFormatter bf = new BinaryFormatter();
-            MemoryStream ms = new MemoryStream();
-            bf.Serialize(ms, this._hostNames);
-
-            byte[] buf = ms.GetBuffer();
-
-            DAL.singleton().proc_HMB_UPDATE_BINARYSTORE(buf, "newbie_hostnames");
+            throw new NotImplementedException();
         }
     }
 }
