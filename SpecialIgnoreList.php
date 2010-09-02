@@ -1,6 +1,6 @@
 <?php
 
-class SpecialIgnoreList extends SpecialAccessList {
+class SpecialIgnoreList extends SpecialPage {
 	function __construct() {
 		parent::__construct( 'IgnoreList', 'helpmebot-view-ignorelist' );
 	}
