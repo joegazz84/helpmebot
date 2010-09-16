@@ -20,7 +20,7 @@ class AccessListPager extends TablePager
 		return $queryInfo;
 	}
 
-	function getIndexField(){return "user_id";}
+	function getIndexField(){return "sort";}
 
 	function getRowClass($row){return "accesslistentry-" . $row->user_accesslevel; }
 
@@ -34,7 +34,7 @@ class AccessListPager extends TablePager
 
 	function getDefaultSort()
 	{
-		return "sort"; //user_accesslevel";
+		return ""; //user_accesslevel";
 	}
 
 	function getFieldNames()
