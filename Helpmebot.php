@@ -39,7 +39,7 @@ $wgAutoloadClasses['CommandListPager'] = $IP.    '/extensions/Helpmebot/CommandL
 $wgAutoloadClasses['SpecialCommandList'] = $IP . '/extensions/Helpmebot/SpecialCommandList.php';
 
 $wgAutoloadClasses['SpecialHelpmebotConfiguration'] = $IP . '/extensions/Helpmebot/SpecialHelpmebotConfiguration.php';
-
+$wgAutoloadClasses['ConfigChannelListPager'] = $IP.    '/extensions/Helpmebot/ConfigChannelListPager.php';
 
 
 $wgSpecialPages['AccessList'] = 'SpecialAccessList';
