@@ -4,6 +4,7 @@ $messages = array();
 $messages['en'] = array( 
 	'helpmebot' => 'Helpmebot',
 	'accesslist' => 'Access List',
+	'ignorelist' => 'Full Access List',
 	'botmessages' => 'Messages',
 	'specialpages-group-helpmebot' => "Helpmebot data",
 	'brain' => "Brain",
@@ -15,6 +16,8 @@ $messages['en'] = array(
 	'hmb-semi-ignored' => 'Semi-ignored',
 	'hmb-ignored' => 'Ignored',
 	'hmb-ignored-hidden' => 'Ignored (hidden for security reasons)',
-	'hmb-accesslist-headertext' => 'Access list is shown below. Table is scanned from top to bottom, first matching entry provides the access level.',
+	'hmb-accesslist-headertext' => 'Access list is shown below. Table is scanned from top to bottom, first matching entry provides the access level. For security reasons, the ignored masks are not shown.',
+	'hmb-ignorelist-headertext' => 'Access list is shown below. Table is scanned from top to bottom, first matching entry provides the access level.',
 	'helpmebot-editmessages' => 'Edit the bot\'s message table',
+	'hmb-accesslist-headertext' => 'This shows the bot\'s configuration. Please choose a channel:',
 );

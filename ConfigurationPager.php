@@ -1,26 +1,17 @@
 <?php
 
-class AccessListPager extends TablePager
+class ConfigurationPager extends TablePager
 {
 
 	function getQueryInfo()
 	{
-		$queryInfo = array();
-		
-		
-		$queryInfo['tables'] = 'hmb_user';
-		$queryInfo['fields'] = array('user_id', 'user_nickname','user_username', 'user_hostname', 'user_accesslevel', 'sort');
-		
-		global $wgUser;
-		if(! $wgUser->isAllowed('helpmebot-view-ignorelist'))
-		{
-			$queryInfo['conds'] = '`user_accesslevel` != "Ignored"';
-		}
-		
-		return $queryInfo;
+		return array(
+			'tables' => 'hmb_user',
+			'fields' => array('user_id', 'user_nickname','user_username', 'user_hostname', 'user_accesslevel', 'sort')
+			);
 	}
 
-	function getIndexField(){return "user_id";}
+	function getIndexField(){return "sort";}
 
 	function getRowClass($row){return "accesslistentry-" . $row->user_accesslevel; }
 
