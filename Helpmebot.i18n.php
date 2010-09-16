@@ -19,5 +19,6 @@ $messages['en'] = array(
 	'hmb-accesslist-headertext' => 'Access list is shown below. Table is scanned from top to bottom, first matching entry provides the access level. For security reasons, the ignored masks are not shown.',
 	'hmb-ignorelist-headertext' => 'Access list is shown below. Table is scanned from top to bottom, first matching entry provides the access level.',
 	'helpmebot-editmessages' => 'Edit the bot\'s message table',
-	'hmb-accesslist-headertext' => 'This shows the bot\'s configuration. Please choose a channel:',
+	'helpmebot-view-ignorelist' => 'View bot\'s entire access list.',
+	'hmb-configuration-headertext' => 'This shows the bot\'s configuration. Please choose a channel:',
 );

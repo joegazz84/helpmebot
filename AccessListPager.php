@@ -34,7 +34,7 @@ class AccessListPager extends TablePager
 
 	function getDefaultSort()
 	{
-		return ""; //user_accesslevel";
+		return "sort"; //user_accesslevel";
 	}
 
 	function getFieldNames()
