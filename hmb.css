@@ -4,4 +4,6 @@
 .accesslistentry-Normal, .commandlistentry-Normal {color:black;}
 .accesslistentry-Semi-ignored, .commandlistentry-Semi-ignored { color:orange;}
 .accesslistentry-Ignored, .commandlistentry-Ignored { color:red;}
+.channelentry-Enabled { background-color:green; }
+.channelentry-Disabled { background-color:red; }
 
