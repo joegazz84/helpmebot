@@ -39,7 +39,8 @@ class SpecialAccessList extends SpecialPage {
 		}
 		
 		$pager = new AccessListPager();
+		$pager->setLimit(1000);
 		$wgOut->addHTML( $out );
-		$wgOut->addHTML( $pager->getNavigationBar() . '<table>' . $pager->getBody() . '</table>' . $pager->getNavigationBar() );
+		$wgOut->addHTML( '<table>' . $pager->getBody() . '</table>'  );
 	}
 }
