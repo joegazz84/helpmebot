@@ -7,7 +7,7 @@ class ConfigChannelListPager extends TablePager
 	{
 		return array(
 			'tables' => 'channellist',
-			'fields' => array('channel', 'network', 'enabled')
+			'fields' => array('name', 'network', 'enabled')
 			);
 	}
 
@@ -31,7 +31,7 @@ class ConfigChannelListPager extends TablePager
 	function getFieldNames()
 	{
 		return array(
-		'channel' => "IRC Channel",
+		'name' => "IRC Channel",
 		'network' => "IRC Network",
 		'enabled' => "Enabled/Disabled"
 		);
