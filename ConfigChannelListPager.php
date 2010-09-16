@@ -6,14 +6,14 @@ class ConfigChannelListPager extends TablePager
 	function getQueryInfo()
 	{
 		return array(
-			'tables' => 'hmb_user',
-			'fields' => array('user_id', 'user_nickname','user_username', 'user_hostname', 'user_accesslevel', 'sort')
+			'tables' => 'channellist',
+			'fields' => array('channel', 'network', 'enabled')
 			);
 	}
 
-	function getIndexField(){return "sort";}
+	function getIndexField(){return "id";}
 
-	function getRowClass($row){return "channelentry-" . $row->channel_enabled; }
+	function getRowClass($row){return "channelentry-" . $row->enabled; }
 
 	function isFieldSortable( $field )
 	{ return false; }
@@ -31,11 +31,9 @@ class ConfigChannelListPager extends TablePager
 	function getFieldNames()
 	{
 		return array(
-		'user_id'	=> "Access ID",
-		'user_nickname' => "Nickname",
-		'user_username' => "Username",
-		'user_hostname' => "Hostname",
-		'user_accesslevel' => "Access level"
+		'channel' => "IRC Channel",
+		'network' => "IRC Network",
+		'enabled' => "Enabled/Disabled"
 		);
 	}
 

@@ -38,17 +38,19 @@ $wgAutoloadClasses['BrainPager'] = $IP.'/extensions/Helpmebot/BrainPager.php';
 $wgAutoloadClasses['CommandListPager'] = $IP.    '/extensions/Helpmebot/CommandListPager.php';
 $wgAutoloadClasses['SpecialCommandList'] = $IP . '/extensions/Helpmebot/SpecialCommandList.php';
 
-$wgAutoloadClasses['SpecialBotMessages'] = $IP . '/extensions/Helpmebot/SpecialBotMessages.php';
+$wgAutoloadClasses['SpecialHelpmebotConfiguration'] = $IP . '/extensions/Helpmebot/SpecialHelpmebotConfiguration.php';
+
+
 
 $wgSpecialPages['AccessList'] = 'SpecialAccessList';
 $wgSpecialPages['Brain'] = 'SpecialBrain';
 $wgSpecialPages['CommandList'] = 'SpecialCommandList';
-$wgSpecialPages['BotMessages'] = 'SpecialBotMessages';
+$wgSpecialPages['HelpmebotConfiguration'] = 'SpecialHelpmebotConfiguration';
 
 $wgSpecialPageGroups['AccessList'] = 'helpmebot';
 $wgSpecialPageGroups['Brain']="helpmebot";
 $wgSpecialPageGroups['CommandList']="helpmebot";
-$wgSpecialPageGroups['BotMessages']="helpmebot";
+$wgSpecialPageGroups['HelpmebotConfiguration']="helpmebot";
 
 $wgExtensionMessagesFiles['Helpmebot'] = $IP . '/extensions/Helpmebot/Helpmebot.i18n.php';
 

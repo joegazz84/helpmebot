@@ -17,6 +17,6 @@ class SpecialHelpmebotConfiguration extends SpecialPage {
 		
 		$pager = new ConfigChannelListPager();
 		$wgOut->addHTML( $out );
-		$wgOut->addHTML( $pager->getNavigationBar() . '<table>' . $pager->getBody() . '</table>' . $pager->getNavigationBar() );
+		$wgOut->addHTML( '<table>' . $pager->getBody() . '</table>' );
 	}
 }

@@ -5,6 +5,7 @@ $messages['en'] = array(
 	'helpmebot' => 'Helpmebot',
 	'accesslist' => 'Access List',
 	'ignorelist' => 'Full Access List',
+	'helpmebotconfiguration' => "Helpmebot Configuration",
 	'botmessages' => 'Messages',
 	'specialpages-group-helpmebot' => "Helpmebot data",
 	'brain' => "Brain",
