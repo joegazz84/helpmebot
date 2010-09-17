@@ -7,7 +7,7 @@ class ConfigChannelListPager extends TablePager
 	{
 		return array(
 			'tables' => 'channellist',
-			'fields' => array('name', 'network', 'enabled')
+			'fields' => array('name', 'network', 'enabled', 'id')
 			);
 	}
 
@@ -20,6 +20,8 @@ class ConfigChannelListPager extends TablePager
 
 	function formatValue( $name, $value )
 	{
+		if($name = "id")
+		$value = $this->getSkin()->link(Title::newFromText("HelpmebotConfiguration","Special"), "Configuration", array(), array('ircchannel'=>$value), array());
 		return $value;
 	}
 
@@ -33,7 +35,8 @@ class ConfigChannelListPager extends TablePager
 		return array(
 		'name' => "IRC Channel",
 		'network' => "IRC Network",
-		'enabled' => "Enabled/Disabled"
+		'enabled' => "Enabled/Disabled",
+		'id' => "Configuration"
 		);
 	}
 
