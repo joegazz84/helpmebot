@@ -20,8 +20,8 @@ class ConfigChannelListPager extends TablePager
 
 	function formatValue( $name, $value )
 	{
-		if($name = "id")
-		$value = $this->getSkin()->link(Title::newFromText("HelpmebotConfiguration","Special"), "Configuration", array(), array('ircchannel'=>$value), array());
+		if($name == "id")
+			$value = $this->getSkin()->link(Title::newFromText("Special:HelpmebotConfiguration","Special"), "Configuration", array(), array('ircchannel'=>$value), array());
 		return $value;
 	}
 
