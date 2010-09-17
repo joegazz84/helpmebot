@@ -11,12 +11,16 @@ class SpecialHelpmebotConfiguration extends SpecialPage {
 		$this->setHeaders();
 		$wgOut->addExtensionStyle($wgScriptPath . '/extensions/Helpmebot/hmb.css?' . $wgHelpmebotStyleVersion );
 
-		$wgOut->addWikiMsg('hmb-configuration-headertext');
-		
-		$out = "";
-		
-		$pager = new ConfigChannelListPager();
-		$wgOut->addHTML( $out );
-		$wgOut->addHTML( '<table>' . $pager->getBody() . '</table>' );
+		$channel = $wgRequest->getIntOrNull('ircchannel');
+		if($channel == null) {
+			$wgOut->addWikiMsg('hmb-configuration-headertext');
+					
+			$pager = new ConfigChannelListPager();
+			$wgOut->addHTML( $out );
+			$wgOut->addHTML( '<table>' . $pager->getBody() . '</table>' );
+		}
+		else {
+			$wgOut->addWikiMsg('hmb-configuration-channeltext');
+		}
 	}
 }
