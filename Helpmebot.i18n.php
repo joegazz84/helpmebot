@@ -10,6 +10,7 @@ $messages['en'] = array(
 	'specialpages-group-helpmebot' => "Helpmebot data",
 	'brain' => "Brain",
 	'commandlist' => 'Command List',
+	'subversionrepositories' => 'Subversion repositories',
 	'hmb-superuser' => 'Superuser',
 	'hmb-developer' => 'Developer',
 	'hmb-advanced' => 'Advanced',

@@ -41,16 +41,20 @@ $wgAutoloadClasses['SpecialCommandList'] = $IP . '/extensions/Helpmebot/SpecialC
 $wgAutoloadClasses['SpecialHelpmebotConfiguration'] = $IP . '/extensions/Helpmebot/SpecialHelpmebotConfiguration.php';
 $wgAutoloadClasses['ConfigChannelListPager'] = $IP.    '/extensions/Helpmebot/ConfigChannelListPager.php';
 
+$wgAutoloadClasses['SpecialSubversionRepositories'] = $IP.'/extensions/Helpmebot/SpecialSubversionRepositories.php';
 
 $wgSpecialPages['AccessList'] = 'SpecialAccessList';
 $wgSpecialPages['Brain'] = 'SpecialBrain';
 $wgSpecialPages['CommandList'] = 'SpecialCommandList';
 $wgSpecialPages['HelpmebotConfiguration'] = 'SpecialHelpmebotConfiguration';
+$wgSpecialPages['SubversionRepositories'] = 'SpecialSubversionRepositories';
 
 $wgSpecialPageGroups['AccessList'] = 'helpmebot';
 $wgSpecialPageGroups['Brain']="helpmebot";
 $wgSpecialPageGroups['CommandList']="helpmebot";
 $wgSpecialPageGroups['HelpmebotConfiguration']="helpmebot";
+$wgSpecialPageGroups['SubversionRepositories']="developer";
+
 
 $wgExtensionMessagesFiles['Helpmebot'] = $IP . '/extensions/Helpmebot/Helpmebot.i18n.php';
 
