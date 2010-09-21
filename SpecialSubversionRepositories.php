@@ -22,6 +22,6 @@ class SpecialSubversionRepositories extends SpecialPage {
 		        }
 		}
 		
-		$wgOut->addWikiText($out,false);
+		$wgOut->addWikiText($out,true);
 	}
 }
