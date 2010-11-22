@@ -1,5 +1,5 @@
 <?php
-require_once 'mcviz/Google/Visualization.php';
+require_once 'MC/Google/Visualization.php';
 require_once '../../AdminSettings.php';
 
 $db = new PDO('mysql:dbname='.$wgDBname.';host='.$wgDBserver, $wgDBuser, $wgDBpassword);
