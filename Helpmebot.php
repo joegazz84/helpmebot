@@ -41,6 +41,9 @@ $wgAutoloadClasses['SpecialCommandList'] = $IP . '/extensions/Helpmebot/SpecialC
 $wgAutoloadClasses['SpecialHelpmebotConfiguration'] = $IP . '/extensions/Helpmebot/SpecialHelpmebotConfiguration.php';
 $wgAutoloadClasses['ConfigChannelListPager'] = $IP.    '/extensions/Helpmebot/ConfigChannelListPager.php';
 
+
+$wgAutoloadClasses['SpecialCommandStatistics'] = $IP . '/extensions/Helpmebot/SpecialCommandStatistics';
+
 $wgAutoloadClasses['SpecialSubversionRepositories'] = $IP.'/extensions/Helpmebot/SpecialSubversionRepositories.php';
 
 $wgSpecialPages['AccessList'] = 'SpecialAccessList';
@@ -48,7 +51,9 @@ $wgSpecialPages['Brain'] = 'SpecialBrain';
 $wgSpecialPages['CommandList'] = 'SpecialCommandList';
 $wgSpecialPages['HelpmebotConfiguration'] = 'SpecialHelpmebotConfiguration';
 $wgSpecialPages['SubversionRepositories'] = 'SpecialSubversionRepositories';
+$wgSpecialPages['CommandStatistics'] = 'SpecialCommandStatistics';
 
+$wgSpecialPageGroups['CommandStatistics'] = 'helpmebot';
 $wgSpecialPageGroups['AccessList'] = 'helpmebot';
 $wgSpecialPageGroups['Brain']="helpmebot";
 $wgSpecialPageGroups['CommandList']="helpmebot";
@@ -59,3 +64,20 @@ $wgSpecialPageGroups['SubversionRepositories']="developer";
 $wgExtensionMessagesFiles['Helpmebot'] = $IP . '/extensions/Helpmebot/Helpmebot.i18n.php';
 
 $wgHelpmebotStyleVersion=4;
+
+
+$wgHooks['ResourceLoaderRegisterModules'][] = 'efHelpmebotRegisterResourceLoaderModules';
+ 
+function efHelpmebotRegisterResourceLoaderModules( ResourceLoader &$resourceLoader ) {
+		global $wgExtensionAssetsPath;
+		$localpath = dirname( __FILE__ ); // Change this if your hooks file is not in the extension's top directory
+		$remotepath = "$wgExtensionAssetsPath/Helpmebot";
+		$resourceLoader->register( 'ext.Helpmebot', new ResourceLoaderFileModule( array(
+			'scripts' => 'chartdraw.js'
+		), $localpath, $remotepath ) );
+		
+		$resourceLoader->register( 'ext.GoogleJsapi', new ResourceLoaderFileModule( array(
+			'scripts' => 'jsapi'
+		), 'http://www.google.com/', 'http://www.google.com/' ) );
+		return true;
+	}
