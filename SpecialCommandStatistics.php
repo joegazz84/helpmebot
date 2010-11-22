@@ -8,7 +8,9 @@ class SpecialCommandStatistics extends SpecialPage {
 		global $wgRequest, $wgOut, $wgScriptPath, $wgHelpmebotStyleVersion;
  
 		
-		$wgOut->addModules(array("ext.GoogleJsapi", "ext.Helpmebot"));
+		
+		$wgOut->addScript('<script type="text/javascript" src="http://www.google.com/jsapi"></script>');
+		$wgOut->addModules("ext.Helpmebot");
 		$this->setHeaders();
 		
 		$wgOut->addHTML('<div id="chart_div"></div>');
