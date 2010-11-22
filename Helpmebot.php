@@ -66,7 +66,7 @@ $wgExtensionMessagesFiles['Helpmebot'] = $IP . '/extensions/Helpmebot/Helpmebot.
 $wgHelpmebotStyleVersion=4;
 
 
-$wgHooks['ResourceLoaderRegisterModules'][] = 'efHelpmebotRegisterResourceLoaderModules';
+//$wgHooks['ResourceLoaderRegisterModules'][] = 'efHelpmebotRegisterResourceLoaderModules';
  
 function efHelpmebotRegisterResourceLoaderModules( ResourceLoader &$resourceLoader ) {
 		global $wgExtensionAssetsPath;
