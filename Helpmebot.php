@@ -42,8 +42,6 @@ $wgAutoloadClasses['SpecialHelpmebotConfiguration'] = $IP . '/extensions/Helpmeb
 $wgAutoloadClasses['ConfigChannelListPager'] = $IP.    '/extensions/Helpmebot/ConfigChannelListPager.php';
 
 
-$wgAutoloadClasses['SpecialCommandStatistics'] = $IP . '/extensions/Helpmebot/SpecialCommandStatistics.php';
-
 $wgAutoloadClasses['SpecialSubversionRepositories'] = $IP.'/extensions/Helpmebot/SpecialSubversionRepositories.php';
 
 $wgSpecialPages['AccessList'] = 'SpecialAccessList';
@@ -51,9 +49,7 @@ $wgSpecialPages['Brain'] = 'SpecialBrain';
 $wgSpecialPages['CommandList'] = 'SpecialCommandList';
 $wgSpecialPages['HelpmebotConfiguration'] = 'SpecialHelpmebotConfiguration';
 $wgSpecialPages['SubversionRepositories'] = 'SpecialSubversionRepositories';
-$wgSpecialPages['CommandStatistics'] = 'SpecialCommandStatistics';
 
-$wgSpecialPageGroups['CommandStatistics'] = 'helpmebot';
 $wgSpecialPageGroups['AccessList'] = 'helpmebot';
 $wgSpecialPageGroups['Brain']="helpmebot";
 $wgSpecialPageGroups['CommandList']="helpmebot";
@@ -64,16 +60,3 @@ $wgSpecialPageGroups['SubversionRepositories']="developer";
 $wgExtensionMessagesFiles['Helpmebot'] = $IP . '/extensions/Helpmebot/Helpmebot.i18n.php';
 
 $wgHelpmebotStyleVersion=4;
-
-
-//$wgHooks['ResourceLoaderRegisterModules'][] = 'efHelpmebotRegisterResourceLoaderModules';
- 
-function efHelpmebotRegisterResourceLoaderModules( ResourceLoader &$resourceLoader ) {
-		global $wgExtensionAssetsPath;
-		$localpath = "extensions/Helpmebot/"; // Change this if your hooks file is not in the extension's top directory
-		$remotepath = "Helpmebot/";
-		$resourceLoader->register( 'ext.Helpmebot', new ResourceLoaderFileModule( array(
-			'scripts' => 'chartdraw.js'
-		), $localpath, $remotepath ) );
-		return true;
-	}
