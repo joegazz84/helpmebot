@@ -70,7 +70,7 @@ $wgHooks['ResourceLoaderRegisterModules'][] = 'efHelpmebotRegisterResourceLoader
  
 function efHelpmebotRegisterResourceLoaderModules( ResourceLoader &$resourceLoader ) {
 		global $wgExtensionAssetsPath;
-		$localpath = "/"; // Change this if your hooks file is not in the extension's top directory
+		$localpath = "extensions/Helpmebot/"; // Change this if your hooks file is not in the extension's top directory
 		$remotepath = "Helpmebot/";
 		$resourceLoader->register( 'ext.Helpmebot', new ResourceLoaderFileModule( array(
 			'scripts' => 'chartdraw.js'
