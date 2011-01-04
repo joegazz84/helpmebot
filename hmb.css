@@ -2,7 +2,7 @@
 .accesslistentry-Superuser, .commandlistentry-Superuser { color:blue;}
 .accesslistentry-Advanced, .commandlistentry-Advanced {color:green;}
 .accesslistentry-Normal, .commandlistentry-Normal {color:black;}
-.accesslistentry-Semi-ignored, .commandlistentry-Semi-ignored { color:orange;}
+.accesslistentry-Semi-ignored, .commandlistentry-Semiignored { color:orange;}
 .accesslistentry-Ignored, .commandlistentry-Ignored { color:red;}
 .channelentry-Enabled { background-color:green; }
 .channelentry-Disabled { background-color:red; }

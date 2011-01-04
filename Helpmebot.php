@@ -59,4 +59,4 @@ $wgSpecialPageGroups['SubversionRepositories']="developer";
 
 $wgExtensionMessagesFiles['Helpmebot'] = $IP . '/extensions/Helpmebot/Helpmebot.i18n.php';
 
-$wgHelpmebotStyleVersion=4;
+$wgHelpmebotStyleVersion=5;
