@@ -9,7 +9,7 @@ class AccessListPager extends TablePager
 		
 		
 		$queryInfo['tables'] = 'hmb_user';
-		$queryInfo['fields'] = array('user_id', 'user_nickname','user_username', 'user_hostname', 'user_accesslevel', 'sort');
+		$queryInfo['fields'] = array('user_id', 'user_nickname','user_username', 'user_hostname', 'user_accesslevel', 'user_lastmodified', 'sort');
 		
 		global $wgUser;
 		if(! $wgUser->isAllowed('helpmebot-view-ignorelist'))
@@ -44,7 +44,8 @@ class AccessListPager extends TablePager
 		'user_nickname' => "Nickname",
 		'user_username' => "Username",
 		'user_hostname' => "Hostname",
-		'user_accesslevel' => "Access level"
+		'user_accesslevel' => "Access level",
+		'user_lastmodified' => "Last modified"
 		);
 	}
 
