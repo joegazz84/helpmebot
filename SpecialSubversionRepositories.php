@@ -10,10 +10,10 @@ class SpecialSubversionRepositories extends SpecialPage {
 		$this->setHeaders();
 		$wgOut->addExtensionStyle($wgScriptPath . '/extensions/Helpmebot/hmb.css?' . $wgHelpmebotStyleVersion );
 
-		$folder = scandir('/var/lib/helpmebotsvn/');
+		$folder = scandir('/var/svn/svn.helpmebot.org.uk/');
 		foreach( $folder as $item)
 		{
-		        if(is_dir('/var/lib/helpmebotsvn/' . $item))
+		        if(is_dir('/var/svn/svn.helpmebot.org.uk/' . $item))
 		        {
 		                if($item == "." || $item == ".." )
 		                        continue;
