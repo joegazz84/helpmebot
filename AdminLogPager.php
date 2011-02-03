@@ -33,7 +33,7 @@ class AdminLogPager extends TablePager
 
 	function getDefaultSort()
 	{
-		return "";
+		return "adminlog_id DESC";
 	}
 
 }
