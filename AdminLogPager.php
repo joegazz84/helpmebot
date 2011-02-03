@@ -22,5 +22,18 @@ class AdminLogPager extends TablePager
 		'adminlog_message' => "Message",
 		);
 	}
+	
+	function isFieldSortable( $field )
+	{ return false; }
+
+	function formatValue( $name, $value )
+	{
+		return $value;
+	}
+
+	function getDefaultSort()
+	{
+		return "";
+	}
 
 }
