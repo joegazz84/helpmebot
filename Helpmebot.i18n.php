@@ -23,4 +23,5 @@ $messages['en'] = array(
 	'right-helpmebot-editmessages' => 'Edit the bot\'s message table',
 	'right-helpmebot-view-ignorelist' => 'View bot\'s entire access list.',
 	'hmb-configuration-headertext' => 'This shows the bot\'s configuration. Please choose a channel:',
+	'adminlog' => 'Server Admin Log',
 );
